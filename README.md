@@ -9,6 +9,8 @@ git clone git@github.com:whooosreading/total_reader_api_test.git
 
 This was implemented with ruby version `2.4.1p111` and will require at LEAST ruby 2.0 but may need a higher version. Ruby 2.4.1 or higher would be safest.
 
+Rather than including the [httparty gem](https://github.com/jnunemaker/httparty) via bundler, I've just copied the source code into this project. HTTParty is available under the MIT LICENSE.
+
 ## Description
 
 Sample integration to help with debugging Total Reader API issues.
