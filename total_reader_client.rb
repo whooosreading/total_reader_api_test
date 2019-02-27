@@ -115,8 +115,9 @@ class TotalReaderClient
 	def self.get_ref_id(user)
 		seed = Digest::SHA1.hexdigest(self.get_base_ref_id(user)).to_i(16)
 		random = Random.new(seed)
+		base = "ABCDEF0123456789"
 		"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx".gsub("x") do
-			"ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"[random.rand(36)].downcase
+			base[random.rand(base.length)].downcase
 		end
 	end
 
