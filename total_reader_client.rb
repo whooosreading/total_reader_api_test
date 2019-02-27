@@ -1,5 +1,6 @@
 require "./httparty"
 require "json"
+require "digest/sha1"
 
 class TotalReaderClient
 
@@ -112,6 +113,14 @@ class TotalReaderClient
 	end
 
 	def self.get_ref_id(user)
+		seed = Digest::SHA1.hexdigest(self.get_base_ref_id(user)).to_i(16)
+		random = Random.new(seed)
+		"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx".gsub("x") do
+			"ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"[random.rand(36)].downcase
+		end
+	end
+
+	def self.get_base_ref_id(user)
 		# return SAMPLE_USER_ID
 		ref_id = "api_test_#{ ENV["ENV"] || "dev" }_#{ user.id }"
 		if user.total_reader_ref_id_suffix
